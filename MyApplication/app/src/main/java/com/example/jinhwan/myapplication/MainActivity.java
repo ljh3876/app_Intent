@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
                             }
                         }).show();
-                return false;
+                return true;
             }
         });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
