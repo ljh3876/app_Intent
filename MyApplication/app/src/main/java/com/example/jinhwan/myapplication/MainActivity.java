@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> nameList = new ArrayList<String>();
     ArrayList<Information> infoList = new ArrayList<Information>();
     ArrayAdapter<String> adapter;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                                 infoList.remove(position);
                                 adapter.notifyDataSetChanged();
                                 Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                                i-=1;
+                                count.setText("맛집 리스트("+i+"개)");
                             }
                         }).show();
                 return true;
@@ -70,12 +73,13 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent,_ADD_MENU_CODE);
         }
     }
-    int i=0;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == _ADD_MENU_CODE){
             if(resultCode == RESULT_OK){
-                count.setText("맛집 리스트("+(i+1)+"개)");
+                i+=1;
+                count.setText("맛집 리스트("+i+"개)");
                 Information temp = data.getParcelableExtra("add");
                 infoList.add(temp);
                 nameList.add(temp.name);
